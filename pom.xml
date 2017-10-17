@@ -90,6 +90,45 @@
 							</execution>
 						</executions>
 					</plugin>
+					<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>exec-maven-plugin</artifactId>
+							<version>1.2.1</version>
+							<executions>
+								<execution>									
+									<id>Install Protractor</id>
+									<phase>pre-integration-test</phase>
+									<goals>
+										<goal>exec</goal>
+									</goals>
+									<configuration>
+											<workingDirectory>nodejs/node</workingDirectory>
+											<executable>${project.basedir}/nodejs/node/node</executable>
+											<arguments>
+													<argument>npm/bin/npm-cli.js</argument>
+													<argument>install</argument>
+													<argument>protractor</argument>											
+											</arguments>
+									</configuration>
+								</execution>
+								<execution>
+										<id>Install Jasmine Reporters</id>
+										<phase>pre-integration-test</phase>
+											<goals>
+												<goal>exec</goal>
+											</goals>
+										<configuration>
+											<workingDirectory>nodejs/node</workingDirectory>
+											<executable>${project.basedir}/nodejs/node/node</executable>
+											<arguments>
+												<argument>npm/bin/npm-cli.js</argument>
+											<argument>install</argument>
+											<argument>protractor-jasmine2-html-reporter</argument>
+											</arguments>
+										</configuration>
+								</execution>                   									
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>

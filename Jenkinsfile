@@ -88,6 +88,9 @@ node("docker") {
 				
 				stage 'Unit Test'
 				sh 'mvn -s $MAVEN_SETTINGS test'
+				stage 'Regression Test'
+				export PATH=$PATH:/path of executable protractor
+				sh 'protractor ${env.WORKSPACE}/conf.JS'
 				
 				sh 'env | sort'
 					withCredentials([usernamePassword(credentialsId: env.builduser, passwordVariable: 'password', usernameVariable: 'username')]) {
